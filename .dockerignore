@@ -1,0 +1,5 @@
+storage/*
+!storage/.gitkeep
+.env
+dist/
+node_modules/
