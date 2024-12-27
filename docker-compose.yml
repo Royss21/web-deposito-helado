@@ -1,4 +1,4 @@
-version: '9'
+version: '8'
 
 services:
   web_deposito_helado:

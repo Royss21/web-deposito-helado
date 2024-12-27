@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnDestroy, Renderer2, ViewChild } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import {
+  Component,
+  inject,
+  OnDestroy,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { LayoutService } from './services';
 import SidebarComponent from './components/sidebar/sidebar.component';
@@ -9,7 +15,7 @@ import { filter, Subscription } from 'rxjs';
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, SidebarComponent],
+  imports: [CommonModule, HeaderComponent, SidebarComponent, RouterModule],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css',
 })
@@ -36,10 +42,12 @@ export default class LayoutComponent implements OnDestroy {
               const isOutsideClicked = !(
                 // this.appSidebar.el.nativeElement.isSameNode(event.target) ||
                 // this.appSidebar.el.nativeElement.contains(event.target) ||
-                this.appTopbar.menuButton.nativeElement.isSameNode(
-                  event.target
-                ) ||
-                this.appTopbar.menuButton.nativeElement.contains(event.target)
+                (
+                  this.appTopbar.menuButton.nativeElement.isSameNode(
+                    event.target
+                  ) ||
+                  this.appTopbar.menuButton.nativeElement.contains(event.target)
+                )
               );
               if (isOutsideClicked) {
                 this.hideMenu();
