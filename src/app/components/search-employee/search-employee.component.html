@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="grid p-fluid">
+    <div class="col-12">
+      <div class="field">
+        <label htmlFor="age1">Trabajador</label>
+        <p-autoComplete
+          inputId="autocomplete"
+          [suggestions]="filteredEmployees()"
+          (completeMethod)="searchEmployee($event)"
+          field="fullName"
+          placeholder="Buscar..."
+          emptyMessage="No se ha encontrado datos"
+        ></p-autoComplete>
+      </div>
+    </div>
+  </div>
+</div>

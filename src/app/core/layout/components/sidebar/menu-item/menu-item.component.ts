@@ -1,17 +1,27 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
+  Host,
   HostBinding,
-  inject,
   Input,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
-import { RippleModule } from 'primeng/ripple';
-import { SidebarModule } from 'primeng/sidebar';
-import { filter, Subscription } from 'rxjs';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { LayoutService } from '../../../services';
 import { MenuService } from './services/menu-item.service';
+import { CommonModule } from '@angular/common';
+import { SidebarModule } from 'primeng/sidebar';
+import { RippleModule } from 'primeng/ripple';
 import { BadgeModule } from 'primeng/badge';
 import { InputSwitchModule } from 'primeng/inputswitch';
 
@@ -26,26 +36,52 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     BadgeModule,
     InputSwitchModule,
   ],
-  templateUrl: './menu-item.component.html',
   styleUrl: './menu-item.component.css',
+  templateUrl: './menu-item.component.html',
+  animations: [
+    trigger('children', [
+      state(
+        'collapsed',
+        style({
+          height: '0',
+        })
+      ),
+      state(
+        'expanded',
+        style({
+          height: '*',
+        })
+      ),
+      transition(
+        'collapsed <=> expanded',
+        animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')
+      ),
+    ]),
+  ],
 })
-export class MenuItemComponent {
+export class MenuitemComponent implements OnInit, OnDestroy {
   @Input() item: any;
+
   @Input() index!: number;
+
   @Input() @HostBinding('class.layout-root-menuitem') root!: boolean;
+
   @Input() parentKey!: string;
 
   active = false;
+
   menuSourceSubscription: Subscription;
+
   menuResetSubscription: Subscription;
+
   key: string = '';
 
-  layoutService = inject(LayoutService);
-  cd = inject(ChangeDetectorRef);
-  router = inject(Router);
-  menuService = inject(MenuService);
-
-  constructor() {
+  constructor(
+    public layoutService: LayoutService,
+    private cd: ChangeDetectorRef,
+    public router: Router,
+    private menuService: MenuService
+  ) {
     this.menuSourceSubscription = this.menuService.menuSource$.subscribe(
       (value) => {
         Promise.resolve(null).then(() => {

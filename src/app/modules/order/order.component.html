@@ -1,1 +1,71 @@
-<p>order works!</p>
+<app-title-page title="Pedido" subtitle="Fecha Actual 30/12/2024" />
+<div class="grid">
+  <div class="col-12">
+    <app-search-employee [employees]="employeesMap" />
+  </div>
+  <div class="col-12">
+    <div class="card">
+      <p-toolbar styleClass="mb-2">
+        <p-button
+          label="Agregar Producto"
+          icon="pi pi-plus"
+          severity="success"
+        />
+      </p-toolbar>
+
+      <p-table
+        [value]="products"
+        [scrollable]="true"
+        [resizableColumns]="true"
+        styleClass="p-datatable-gridlines"
+        responsiveLayout="scroll"
+        scrollHeight="600px"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 800px" pResizableColumn>Producto</th>
+            <th style="width: 200px" pResizableColumn>Cantidad Actual</th>
+            <th style="width: 30px" pResizableColumn>Cantidad A Pedir</th>
+            <th style="width: 10px">Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.currentQuantity }}</td>
+            <td style="width: 30px">
+              <p-inputNumber
+                size="8"
+                mode="decimal"
+                [useGrouping]="false"
+                [min]="0"
+                [max]="999"
+              >
+              </p-inputNumber>
+            </td>
+            <td>
+              <p-button
+                [rounded]="true"
+                [text]="true"
+                icon="pi pi-save"
+                severity="primary"
+              />
+              <p-button
+                [rounded]="true"
+                [text]="true"
+                icon="pi pi-book"
+                severity="info"
+              />
+              <p-button
+                [rounded]="true"
+                [text]="true"
+                icon="pi pi-trash"
+                severity="danger"
+              />
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

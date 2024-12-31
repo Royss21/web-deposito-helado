@@ -1,1 +1,97 @@
-<p>sales works!</p>
+<app-title-page title="Venta" subtitle="Fecha Actual 30/12/2024" />
+<div class="grid">
+  <div class="col-4">
+    <div class="grid">
+      <div class="col-12">
+        <app-search-employee [employees]="employeesMap" />
+      </div>
+      <div class="col-12">
+        <div class="card">
+          <p-accordion>
+            <p-accordionTab
+              header="Deudas pendientes"
+              [selected]="true"
+              class="line-height-3 m-0"
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p-accordionTab>
+            <p-accordionTab header="A cuenta" class="line-height-3 m-0">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+              quae ab illo inventore veritatis et quasi architecto beatae vitae
+              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
+              eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci
+              velit, sed quia non numquam eius modi.
+            </p-accordionTab>
+          </p-accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="card">
+      <!-- <p-toolbar styleClass="mb-2">
+        <p-button
+          label="Agregar Producto"
+          icon="pi pi-plus"
+          severity="success"
+        />
+      </p-toolbar> -->
+
+      <p-table
+        [value]="products"
+        [scrollable]="true"
+        [resizableColumns]="true"
+        styleClass="p-datatable-gridlines"
+        responsiveLayout="scroll"
+        scrollHeight="600px"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 800px" pResizableColumn>Producto</th>
+            <th style="width: 30px" pResizableColumn>Cantidad Actual</th>
+            <th style="width: 30px" pResizableColumn>Devolución</th>
+            <th style="width: 30px" pResizableColumn>Vendido</th>
+            <th style="width: 30px" pResizableColumn>Precio Unidad</th>
+            <th style="width: 30px" pResizableColumn>Subtotal</th>
+            <th>Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <td sty>{{ product.name }}</td>
+            <td style="width: 30px">{{ product.currentQuantity }}</td>
+            <td style="width: 30px">
+              <p-inputNumber
+                size="8"
+                mode="decimal"
+                [useGrouping]="false"
+                [min]="0"
+                [max]="999"
+              >
+              </p-inputNumber>
+            </td>
+            <td style="width: 30px">3</td>
+            <td style="width: 30px">4.50</td>
+            <td style="width: 30px">3</td>
+            <td>
+              <p-button
+                [rounded]="true"
+                [text]="true"
+                icon="pi pi-book"
+                severity="info"
+              />
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
