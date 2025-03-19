@@ -1,0 +1,25 @@
+<button
+  type="button"
+  pButton
+  [raised]="true"
+  label="Cancelar"
+  icon="pi pi-save"
+  severity="danger"
+  [disabled]="cancelDisabled()"
+  [style]="{
+      'height': '50px',
+    }"
+  (click)="onCancel()"
+></button>
+<button
+  pButton
+  [raised]="true"
+  label="Guardar"
+  icon="pi pi-save"
+  severity="primary"
+  [disabled]="saveDisabled()"
+  [style]="{
+      'height': '50px',
+    }"
+  type="submit"
+></button>

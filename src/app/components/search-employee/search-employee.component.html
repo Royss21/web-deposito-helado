@@ -1,16 +1,51 @@
 <div class="card">
-  <div class="grid p-fluid">
-    <div class="col-12">
-      <div class="field">
-        <label htmlFor="age1">Trabajador</label>
+  <div class="grid">
+    <div class="col-8">
+      <div class="field p-fluid">
+        <label for="txtEmployee">Trabajador:</label>
         <p-autoComplete
-          inputId="autocomplete"
+          id="txtEmployee"
+          [(ngModel)]="value"
           [suggestions]="filteredEmployees()"
-          (completeMethod)="searchEmployee($event)"
+          [dropdown]="true"
+          (completeMethod)="onSearchEmployee($event)"
+          (onBlur)="onTouched()"
           field="fullName"
           placeholder="Buscar..."
           emptyMessage="No se ha encontrado datos"
-        ></p-autoComplete>
+          class="small"
+          [ngClass]="{'ng-invalid': isInvalid,  'ng-dirty': isInvalid}"
+
+        >
+        </p-autoComplete>
+        @if ( isInvalid ) {
+          <small class="p-error">
+            Debe seleccionar un empleado
+          </small>
+        }
+      </div>
+    </div>
+    <div class="col-4 mt-4">
+      <div class="flex gap-2">
+        <p-button
+          class="small-round"
+          [rounded]="true"
+          icon="pi pi-times"
+          severity="warning"
+          (onClick)="onClear()"
+        />
+        <p-button
+          class="small-round"
+          [rounded]="true"
+          icon="pi pi-refresh"
+          severity="info"
+        />
+        <p-button
+          class="small-round"
+          [rounded]="true"
+          icon="pi pi-plus"
+          severity="success"
+        />
       </div>
     </div>
   </div>

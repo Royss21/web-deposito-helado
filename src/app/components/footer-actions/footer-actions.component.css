@@ -1,0 +1,14 @@
+:host(.sticky-content) {
+  position: sticky;
+  z-index: 100;
+  width: 100%;
+  bottom: 0px;
+  margin: 0 8px;
+  padding: 1.5rem 1rem;
+}
+
+:host(.sticky-content.aditional) {
+  border-radius: 12px 12px 0 0;
+  border: 0px solid;
+  background: var(--surface-900);
+}
